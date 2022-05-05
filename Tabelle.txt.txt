@@ -1,0 +1,52 @@
+Tabella Stanze
+
+CREATE TABLE [dbo].[Stanze]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [numero_di_stanza] SMALLINT NOT NULL, 
+    [piano] VARCHAR(30) NOT NULL, 
+    [numero_di_letti] TINYINT NOT NULL
+)
+--------------------------------------------------
+
+Tabella Ospiti
+
+CREATE TABLE [dbo].[Ospiti]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [nome] VARCHAR(30) NOT NULL, 
+    [cognome] VARCHAR(30) NOT NULL, 
+    [tipo_di_documento] VARCHAR(30) NOT NULL, 
+    [data_di_nascita] DATE NOT NULL, 
+    [numero_di_documento] VARCHAR(30) NOT NULL
+)
+----------------------------------------------------
+
+Tabella Configurazione stanza
+
+CREATE TABLE [dbo].[Descrizione]
+(
+    [Id] INT NOT NULL PRIMARY KEY, 
+    [descrizione] TEXT NOT NULL, 
+    [titolo] VARCHAR(40) NOT NULL
+)
+
+---------------------------------------------------------------
+
+Tabella pagamenti
+CREATE TABLE [dbo].[Pagamenti]
+(
+        [Id] INT NOT NULL PRIMARY KEY,
+        [prenotazioni] TEXT NOT NULL,
+        [status_pagamento] VARCHAR(30) NOT NULL,
+        [metodo_pamento] VARCHAR(30) NOT NULL
+)
+--------------------------------------------------------------
+ tabella prenotazioni
+CREATE TABLE [dbo].[Prenotazioni]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[importo_totale] INT NOT NULL,
+	[importo pagato] INT NOT NULL,
+	[status] VARCHAR(30) NOT NULL
+)
