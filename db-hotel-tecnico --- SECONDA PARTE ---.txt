@@ -1,0 +1,57 @@
+ESERCIZIO n1 SELEZIONA
+1. Ospiti identificati con carta di identità
+
+SELECT * FROM ospiti
+WHERE tipo_documento = 'CI';
+
+
+2. Ospiti nati dopo il 1988
+
+SELECT * FROM ospiti
+WHERE data_di_nascita > '1988';
+
+
+3. Ospiti il ​​cui nome inizia con la D
+
+SELECT * FROM ospiti
+WHERE nome LIKE 'D%';
+
+
+4. Calcola il totale incassato degli ordini accettati (res : 4164.00)
+
+SELECT SUM (prezzo) FROM pagamenti
+WHERE stato ='accettato';
+
+5. Qual è il prezzo massimo pagato? (ris.: 869.00)
+
+SELECT MAX (prezzo) FROM pagamenti;
+
+6. Quanti posti letto ha l'hotel in totale?
+
+SELECT SUM (letti) COME totale_letti FROM stanze;
+-----------------------------------------------------------------------------------------------------------------------
+ESERCIZIO n2 "GROUP BY"
+1. Somma i prezzi dei pagamenti raggruppandoli per stato
+
+SELECT stato, SUM(prezzo) AS Totale
+DA pagamenti GROUP BY stato
+stato GROUP BY;
+
+2. Conta quante volte è stata prenotata ogni stanza
+
+SELECT stanza_id AS stanza, COUNT(*) AS numero_prenotazioni
+DA prenotazioni
+GROUP BY stanza_id;
+------------------------------------------------------------------------------------------------------------------------
+ESERCIZIO n3 "JOIN"
+1. Stampare tutti gli ospiti per ogni prenotazione
+
+SELECT * FROM ospiti SUBSCRIBE prenotazioni_has_ospiti
+ON ospiti.id = prenotazioni_has_ospiti.ospite_id;
+
+
+2. Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano
+
+SELECT SUM(prezzo) AS somma_prezzi_stanze_primo_piano FROM pagamenti SUBSCRIBE prenotazioni
+ON pagamenti.prenotazione_id = prenotazioni.id SUBSCRIBE stanze
+ON prenotazioni.stanza_id = stanze.id WHERE piano =1;
